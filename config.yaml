@@ -1,0 +1,24 @@
+host:
+  # web gin 监听端口
+  port: 9118
+# jolokia 请求地址和验证信息
+jolokia:
+  url: http://172.16.3.89:8080/jolokia
+  username: test
+  password: test
+# 不同的jdk有不同的gc算法，也有可能指定gc算法，这里进行统一的配置，prometheus 发起get请求的时候需要携带参数：gc=a或者gc=b
+gc:
+  a: java.lang:name=PS MarkSweep,type=GarbageCollector
+  b: java.lang:name=ConcurrentMarkSweep,type=GarbageCollector
+
+# 获取jvm运行的线程数量，不包含gc线程
+thread:
+  mbean: java.lang:type=Threading
+
+# gin框架运行模式：release，debug
+gin:
+  mode: release
+
+# 全局接口校验
+auth:
+  token: full@gc12AO
